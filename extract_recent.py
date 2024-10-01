@@ -14,10 +14,12 @@ client = SpotifyOAuth(
 
 sp = spotipy.Spotify(auth_manager = client)
 
-recently_played = sp.current_user_recently_played(limit = 50, after = "1727391600")
+def get_recently_played():    
 
-with open("recently_played2.json", "w") as file:
-    json.dump(recently_played, file, indent = 4)
+    recently_played = sp.current_user_recently_played(limit = 50, after = "1727391600")
+
+    with open("recently_played2.json", "w") as file:
+        json.dump(recently_played, file, indent = 4)
 
 # Extract playlist items
 # playlist_items
