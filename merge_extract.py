@@ -1,18 +1,18 @@
 import json
 import spotipy
 import pandas as pd
-from extract import sp
+from extract_recent import sp
 from glob import glob as gg
 
-json_files = gg(f"recently_played*.json")
+# json_files = gg(f"recently_played*.json")
 
-df = pd.DataFrame()
+# df = pd.DataFrame()
 
-for file in json_files:
-	temp = pd.json_normalize(file)
-	df = df._append(temp)
+# for file in json_files:
+# 	temp = pd.json_normalize(file)
+# 	df = df._append(temp)
 
-print(df.head())
+# print(df.head())
 
 with open("recently_played1.json", "r") as file:
     data = json.load(file)
