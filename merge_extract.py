@@ -24,3 +24,5 @@ song_url = data["items"][0]["track"]["album"]["id"]
 analytics = sp.audio_analysis(song_url)
 
 print(analytics)
+
+# print(song_url)
