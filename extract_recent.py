@@ -5,8 +5,6 @@ import os
 import spotipy
 from spotipy.oauth2 import SpotifyOAuth
 
-with open("keys.json") as file:
-    keys = json.load(file)
 
 client = SpotifyOAuth(
     client_id = os.getenv("CLIENT_ID"), 
