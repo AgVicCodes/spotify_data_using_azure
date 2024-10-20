@@ -6,12 +6,19 @@ import spotipy
 from spotipy.oauth2 import SpotifyOAuth
 
 
+client_id = os.getenv("CLIENT_ID"), 
+client_secret = os.getenv("CLIENT_SECRET_KEY"), 
+redirect_uri = os.getenv("REDIRECT_URI"),
+
 client = SpotifyOAuth(
-    client_id = os.getenv("CLIENT_ID"), 
-    client_secret = os.getenv("CLIENT_SECRET_KEY"), 
-    redirect_uri = os.getenv("REDIRECT_URI"),
+    client_id,
+    client_secret,
+    redirect_uri,
     scope = "user-read-recently-played"
 )
+
+if not client_id or not client_secret or not redirect_uri:
+    raise ValueError("Missing required environment variables")
 
 sp = spotipy.Spotify(auth_manager = client)
 
