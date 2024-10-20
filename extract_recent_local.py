@@ -1,7 +1,6 @@
 import json
 import time
 import glob
-import os
 import spotipy
 from spotipy.oauth2 import SpotifyOAuth
 
@@ -9,9 +8,9 @@ with open("keys.json") as file:
     keys = json.load(file)
 
 client = SpotifyOAuth(
-    client_id = os.getenv("CLIENT_ID"), 
-    client_secret = os.getenv("CLIENT_SECRET_KEY"), 
-    redirect_uri = os.getenv("REDIRECT_URI"),
+    client_id = keys["client_id"], 
+    client_secret = keys["client_secret_key"], 
+    redirect_uri = keys["redirect_uri"], 
     scope = "user-read-recently-played"
 )
 
