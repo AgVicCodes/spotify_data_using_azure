@@ -1,9 +1,10 @@
 name: Get listening history
 
-on: [push]
+# Modified actions file
+on: push
     # schedule:
-    #     -   cron: "*/15 * * * *"
-    
+    #     -   cron: "55 23 * * *"
+
 
 jobs:
     Generate-Sales-Transactions:
@@ -48,7 +49,7 @@ jobs:
                 git config --local user.name 'AgVictorCodes'
                 git config --local user.email 'victoragbeleye2@gmail.com'
                 git add -A
-                git commit -m "Added new csv file"
+                git commit -m "Added new json file"
 
         -   name: push changes
             uses: ad-m/github-push-action@v0.6.0
