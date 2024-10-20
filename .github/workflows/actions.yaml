@@ -1,10 +1,8 @@
 name: Get listening history
 
-# Modified actions file
-on: push
+on: [push]
     # schedule:
     #     -   cron: "55 23 * * *"
-
 
 jobs:
     Generate-Sales-Transactions:
@@ -27,8 +25,8 @@ jobs:
             run: |
                 echo '{"CLIENT_ID": "'"${{ secrets.CLIENT_ID }}"'", "CLIENT_SECRET_KEY": "'"${{ secrets.CLIENT_SECRET_KEY }}"'", "REDIRECT_URI": "'"${{ secrets.REDIRECT_URI }}"'"}' > keys.json
                 echo "REDIRECT_URI is $REDIRECT_URI"
-
         # export $(cat keys.json | xargs)
+
         # -   name: Set up environment variables
         #     run: |
         #         echo "CLIENT_ID=${{ secrets.CLIENT_ID }}" >> $GITHUB_ENV

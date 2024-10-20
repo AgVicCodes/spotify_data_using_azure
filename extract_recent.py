@@ -5,18 +5,23 @@ import os
 import spotipy
 from spotipy.oauth2 import SpotifyOAuth
 
-with open("keys.json") as file:
-    key = json.load(file)
-
+try:
+    with open("keys.json") as file:
+        key = json.load(file)
+except FileNotFoundError as fnfe:
+    raise Exception(f"File wasn't found: {fnfe}")
 
 # client_id = os.getenv("CLIENT_ID")
 # client_secret = os.getenv("CLIENT_SECRET_KEY")
 # redirect_uri = os.getenv("REDIRECT_URI")
 
-client_id = key["CLIENT_ID"]
-client_secret = key["CLIENT_SECRET_KEY"]
-redirect_uri = key["REDIRECT_URI"]
-
+try:
+    client_id = key["CLIENT_ID"]
+    client_secret = key["CLIENT_SECRET_KEY"]
+    redirect_uri = key["REDIRECT_URI"]
+except KeyError as ke:
+    raise Exception(f"Key {ke} not found")
+    
 
 print(f"Client ID: {client_id}, Type: {type(client_id)}")
 print(f"Client Secret: {client_secret}, Type: {type(client_secret)}")
