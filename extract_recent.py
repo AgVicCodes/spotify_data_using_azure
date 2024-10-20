@@ -6,9 +6,9 @@ import spotipy
 from spotipy.oauth2 import SpotifyOAuth
 
 
-client_id = os.getenv("CLIENT_ID")[0]
-client_secret = os.getenv("CLIENT_SECRET_KEY")[0]
-redirect_uri = os.getenv("REDIRECT_URI")[0]
+client_id = os.getenv("CLIENT_ID")
+client_secret = os.getenv("CLIENT_SECRET_KEY")
+redirect_uri = os.getenv("REDIRECT_URI")
 
 print(f"Client ID: {client_id}, Type: {type(client_id)}")
 print(f"Client Secret: {client_secret}, Type: {type(client_secret)}")
