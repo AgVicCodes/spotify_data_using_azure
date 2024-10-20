@@ -25,10 +25,10 @@ jobs:
 
         -   name: fetch api tokens
             run: |
-                echo "CLIENT_ID=${{ secrets.CLIENT_ID }}" >> api_key.txt
-                echo "CLIENT_SECRET_KEY=${{ secrets.CLIENT_SECRET_KEY }}" >> api_key.txt
-                echo "REDIRECT_URI=${{ secrets.REDIRECT_URI }}" >> api_key.txt
-                export $(cat api_key.txt | xargs)
+                echo "'CLIENT_ID': ${{ secrets.CLIENT_ID }}" >> keys.json
+                echo "'CLIENT_SECRET_KEY': ${{ secrets.CLIENT_SECRET_KEY }}" >> keys.json
+                echo "'REDIRECT_URI': ${{ secrets.REDIRECT_URI }}" >> keys.json
+                export $(cat keys.json | xargs)
                 echo "REDIRECT_URI is $REDIRECT_URI"
 
         # -   name: Set up environment variables
