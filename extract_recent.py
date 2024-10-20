@@ -10,6 +10,10 @@ client_id = os.getenv("CLIENT_ID"),
 client_secret = os.getenv("CLIENT_SECRET_KEY"), 
 redirect_uri = os.getenv("REDIRECT_URI"),
 
+print(f"Client ID: {client_id}, Type: {type(client_id)}")
+print(f"Client Secret: {client_secret}, Type: {type(client_secret)}")
+print(f"Redirect URI: {redirect_uri}, Type: {type(redirect_uri)}")
+
 client = SpotifyOAuth(
     client_id,
     client_secret,
