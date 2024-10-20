@@ -1,4 +1,4 @@
-name: Run data_generator.py
+name: Get listening history
 
 on: 
     schedule:
@@ -21,11 +21,11 @@ jobs:
                 python -m pip install --upgrade pip
                 pip install -r requirements.txt
 
-        -   name: generate transactions information
-            run: python data_generator.py
+        -   name: generate listening history
+            run: python extract_recent.py
 
-        -   name: load data into csv
-            run: python load_data_to_csv.py
+        # -   name: load data into csv
+        #     run: python load_data_to_csv.py
         
         -   name: commit files
             run: |

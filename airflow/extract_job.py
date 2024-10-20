@@ -1,5 +1,5 @@
 import airflow
-from airflow.models.dag import DAG111
+from airflow.models.dag import DAG
 from airflow.operators.python import PythonOperator
 from datetime import datetime, timedelta
 from extract_recent import get_recently_played
