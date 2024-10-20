@@ -29,6 +29,12 @@ jobs:
                 export $(cat api_key.txt | xargs)
                 echo "REDIRECT_URI is $REDIRECT_URI"
 
+        -   name: Set up environment variables
+            run: |
+                echo "CLIENT_ID=${{ secrets.CLIENT_ID }}" >> $GITHUB_ENV
+                echo "CLIENT_SECRET_KEY=${{ secrets.CLIENT_SECRET_KEY }}" >> $GITHUB_ENV
+                echo "REDIRECT_URI=${{ secrets.REDIRECT_URI }}" >> $GITHUB_ENV
+
         -   name: generate listening history
             run: |
                 python extract_recent.py
