@@ -1,8 +1,8 @@
 name: Get listening history
 
-on: 
-    schedule:
-        -   cron: "55 23 * * *"
+on: [push]
+    # schedule:
+    #     -   cron: "55 23 * * *"
 
 jobs:
     Generate-Sales-Transactions:
@@ -40,6 +40,10 @@ jobs:
         # -   name: load data into csv
         #     run: python load_data_to_csv.py
         
+        -   name: cleanup workspace
+            run: |
+                echo "rm api_key.txt"
+
         -   name: commit files
             run: |
                 git config --local user.name 'AgVictorCodes'
