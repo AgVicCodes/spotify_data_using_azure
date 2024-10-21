@@ -37,6 +37,8 @@ song_df = pd.DataFrame(df_dict)
 
 # for item in data["items"]:
 
+pd.set_option("display.max_columns", None)
+
 print(song_df.head(10))
 
 

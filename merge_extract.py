@@ -1,7 +1,7 @@
 import json
 import spotipy
 import pandas as pd
-from extract_recent import sp
+from extract_recent_local import sp
 from glob import glob as gg
 
 # json_files = gg(f"recently_played*.json")
@@ -17,12 +17,27 @@ from glob import glob as gg
 with open("recently_played1.json", "r") as file:
     data = json.load(file)
 
-print(data["items"][0]["track"]["album"]["id"])
+print(data["items"][19]["track"]["album"]["id"])
 
-song_url = data["items"][0]["track"]["album"]["id"]
+song_id = data["items"][19]["track"]["album"]["id"]
 
-analytics = sp.audio_analysis(song_url)
+# try:
+#     analytics = sp.audio_analysis(song_url)
+# except:
+#     raise Exception(f"Not working")
 
-print(analytics)
+try:
+    analysis = sp.audio_analysis(song_id)
+    print(analysis)
+except spotipy.exceptions.SpotifyException as e:
+    print(f"Spotify API Error: {e}")
+    # Fallback to audio features
+    try:
+        features = sp.audio_features(song_id)
+        print(features)
+    except Exception as fe:
+        print(f"Audio features not available: {fe}")
+
+# print(analytics)
 
 # print(song_url)
