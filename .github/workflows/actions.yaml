@@ -42,7 +42,7 @@ jobs:
         
         -   name: cleanup workspace
             run: |
-                rm api_key.txt
+                rm keys.json
 
         -   name: commit files
             run: |
