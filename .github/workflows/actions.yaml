@@ -2,7 +2,7 @@ name: Get listening history
 
 on: 
     schedule:
-        -   cron: "* * * * *"
+        -   cron: "55 23 * * *"
 
 jobs:
     Generate-Sales-Transactions:
