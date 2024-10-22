@@ -49,7 +49,7 @@ def get_recently_played():
 
     recently_played = sp.current_user_recently_played(limit = 50, after = current_time)
 
-    with open(f"recently_played{count}.json", "w") as file:
+    with open(f"data/recently_played{count}.json", "w") as file:
         json.dump(recently_played, file, indent = 4)
 
 

@@ -14,7 +14,7 @@ from glob import glob as gg
 
 # print(df.head())
 
-with open("recently_played1.json", "r") as file:
+with open("data/recently_played1.json", "r") as file:
     data = json.load(file)
 
 print(data["items"][19]["track"]["album"]["id"])

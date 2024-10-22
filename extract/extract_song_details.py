@@ -2,7 +2,7 @@ import json
 import pandas as pd
 
 
-with open("recently_played7.json", "r") as file:
+with open("data/recently_played7.json", "r") as file:
     data = json.load(file)
 
 
