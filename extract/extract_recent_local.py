@@ -4,8 +4,13 @@ import glob
 import spotipy
 from spotipy.oauth2 import SpotifyOAuth
 
-with open("keys.json") as file:
-    keys = json.load(file)
+key_path = "keys.json"
+
+try:
+    with open(key_path) as file:
+        keys = json.load(file)
+except FileNotFoundError as fnfe:
+    print(f"File {key_path} not found")
 
 client = SpotifyOAuth(
     client_id = keys["client_id"], 
