@@ -35,7 +35,7 @@ jobs:
 
         -   name: generate listening history
             run: |
-                python extract_todays_history.py
+                python extract/extract_todays_history.py
 
         # -   name: load data into csv
         #     run: python load_data_to_csv.py
