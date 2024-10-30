@@ -11,3 +11,7 @@ jobs:
 
       - name: Setup Python
         uses: actions/setup-python@v4
+
+      - name: Finish Automation
+        run: |
+          echo "End of automation process"
