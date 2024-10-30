@@ -11,10 +11,3 @@ jobs:
 
       - name: Setup Python
         uses: actions/setup-python@v4
-
-      - name: End automation
-
-
-
-		
-# - 	cron: "25 */3 * * *"
