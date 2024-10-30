@@ -13,8 +13,7 @@ jobs:
         uses: actions/setup-python@v4
 
       - name: End automation
-        run: |
-          echo "Finished workflow"
+        run: echo "Finished workflow"
 
 
 
