@@ -3,15 +3,48 @@ name: Get Previous Listening History
 on: [push]
 
 jobs:
-	Get-Previous-Weekly-Listening-History:
-		runs-on: ubuntu-latest
-		steps:
-			- 	name: Checkout Repo Content
-				uses: actions/checkout@v2
+  Get-Previous-Weekly-Listening-History:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo Content
+        uses: actions/checkout@v2
 
-			- 	name: Setup Python
-				uses: actions/setup-python@v4
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with: 
+          python-version: "3.12.5"
 
-			- 	name: Finish Automation
-				run: |
-					echo "End of automation process"
+      - name: Install python packages
+        run: |
+          python -m pip install --upgrade pip 
+          pip install -r requirements.txt  
+
+      - name: Fetch API tokens
+        run: |
+          echo '{"CLIENT_ID": "'"${{ secrets.CLIENT_ID }}"'", "CLIENT_SECRET_KEY": "'"${{ secrets.CLIENT_SECRET_KEY }}"'", "REDIRECT_URI": "'"${{ secrets.REDIRECT_URI }}"'"}' > keys.json
+          echo "REDIRECT_URI is $REDIRECT_URI"
+
+      - name: Run get previous listening history
+        run: |
+          python extract/extract_previous_history.py
+
+      - name: Finish Automation
+        run: |
+          echo "End of automation process"
+
+      - name: cleanup workspace
+        run: |
+          rm keys.json
+
+      - name: commit files
+        run: |
+          git config --local user.name 'AgVictorCodes'
+          git config --local user.email 'victoragbeleye2@gmail.com'
+          git add -A
+          git commit -m "Added new json file"
+
+      - name: push changes
+        uses: ad-m/github-push-action@v0.6.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: main
