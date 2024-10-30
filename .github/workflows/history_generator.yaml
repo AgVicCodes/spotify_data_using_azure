@@ -3,15 +3,15 @@ name: Get Previous Listening History
 on: [push]
 
 jobs:
-  Get-Previous-Weekly-Listening-History:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Repo Content
-        uses: actions/checkout@v2
+	Get-Previous-Weekly-Listening-History:
+		runs-on: ubuntu-latest
+		steps:
+			- 	name: Checkout Repo Content
+				uses: actions/checkout@v2
 
-      - name: Setup Python
-        uses: actions/setup-python@v4
+			- 	name: Setup Python
+				uses: actions/setup-python@v4
 
-      - name: Finish Automation
-        run: |
-          echo "End of automation process"
+			- 	name: Finish Automation
+				run: |
+					echo "End of automation process"
