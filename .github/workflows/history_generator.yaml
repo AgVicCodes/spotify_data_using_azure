@@ -28,10 +28,6 @@ jobs:
         run: |
           python extract/extract_previous_history.py
 
-      - name: Finish Automation
-        run: |
-          echo "End of automation process"
-
       - name: cleanup workspace
         run: |
           rm keys.json
@@ -48,3 +44,7 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: main
+
+      - name: Finish Automation
+        run: |
+          echo "End of automation process"
