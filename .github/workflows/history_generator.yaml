@@ -3,18 +3,18 @@ name: Get Previous Listening History
 on: [push]
 
 jobs:
-	Get-Previous-Weelkly-Listening-History:
-	runs-on: ubuntu-latest
+    Get-Previous-Weelkly-Listening-History:
+    runs-on: ubuntu-latest
 
-	steps:
-		-	name: Checkout Repo Content
-			uses: actions/checkout@v2
+    steps:
+    -   name: Checkout Repo Content
+	uses: actions/checkout@v2
 
-		- 	name: Setup Python
-			uses: actions/setup-python@v4
+    -   name: Setup Python
+	uses: actions/setup-python@v4
 
-			run: |
-				echo "Finished workflow"
+	run: |
+	    echo "Finished workflow"
 
 
 
