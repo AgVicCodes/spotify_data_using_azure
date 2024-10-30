@@ -8,52 +8,52 @@ jobs:
     Get-Daily-Listening-History:
         runs-on: ubuntu-latest 
 
-steps:
+        steps:
 
--   name: checkout repo content
-    uses: actions/checkout@v2
--   name: setup python
-    uses: actions/setup-python@v4
-    with: 
-        python-version: "3.12.5"
+        -   name: checkout repo content
+            uses: actions/checkout@v2
+        -   name: setup python
+            uses: actions/setup-python@v4
+            with: 
+                python-version: "3.12.5"
 
--   name: install python packages
-    run: |
-        python -m pip install --upgrade pip
-        pip install -r requirements.txt
+        -   name: install python packages
+            run: |
+                python -m pip install --upgrade pip
+                pip install -r requirements.txt
 
--   name: fetch api tokens
-    run: |
-        echo '{"CLIENT_ID": "'"${{ secrets.CLIENT_ID }}"'", "CLIENT_SECRET_KEY": "'"${{ secrets.CLIENT_SECRET_KEY }}"'", "REDIRECT_URI": "'"${{ secrets.REDIRECT_URI }}"'"}' > keys.json
-        echo "REDIRECT_URI is $REDIRECT_URI"
-# export $(cat keys.json | xargs)
+        -   name: fetch api tokens
+            run: |
+                echo '{"CLIENT_ID": "'"${{ secrets.CLIENT_ID }}"'", "CLIENT_SECRET_KEY": "'"${{ secrets.CLIENT_SECRET_KEY }}"'", "REDIRECT_URI": "'"${{ secrets.REDIRECT_URI }}"'"}' > keys.json
+                echo "REDIRECT_URI is $REDIRECT_URI"
+        # export $(cat keys.json | xargs)
 
-# -   name: Set up environment variables
-#     run: |
-#         echo "CLIENT_ID=${{ secrets.CLIENT_ID }}" >> $GITHUB_ENV
-#         echo "CLIENT_SECRET_KEY=${{ secrets.CLIENT_SECRET_KEY }}" >> $GITHUB_ENV
-#         echo "REDIRECT_URI=${{ secrets.REDIRECT_URI }}" >> $GITHUB_ENV
+        # -   name: Set up environment variables
+        #     run: |
+        #         echo "CLIENT_ID=${{ secrets.CLIENT_ID }}" >> $GITHUB_ENV
+        #         echo "CLIENT_SECRET_KEY=${{ secrets.CLIENT_SECRET_KEY }}" >> $GITHUB_ENV
+        #         echo "REDIRECT_URI=${{ secrets.REDIRECT_URI }}" >> $GITHUB_ENV
 
--   name: generate listening history
-    run: |
-        python extract/extract_todays_history.py
+        -   name: generate listening history
+            run: |
+                python extract/extract_todays_history.py
 
-# -   name: load data into csv
-#     run: python load_data_to_csv.py
+        # -   name: load data into csv
+        #     run: python load_data_to_csv.py
 
--   name: cleanup workspace
-    run: |
-        rm keys.json
+        -   name: cleanup workspace
+            run: |
+                rm keys.json
 
--   name: commit files
-    run: |
-        git config --local user.name 'AgVictorCodes'
-        git config --local user.email 'victoragbeleye2@gmail.com'
-        git add -A
-        git commit -m "Added new json file"
+        -   name: commit files
+            run: |
+                git config --local user.name 'AgVictorCodes'
+                git config --local user.email 'victoragbeleye2@gmail.com'
+                git add -A
+                git commit -m "Added new json file"
 
--   name: push changes
-    uses: ad-m/github-push-action@v0.6.0
-    with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        branch: main
+        -   name: push changes
+            uses: ad-m/github-push-action@v0.6.0
+            with:
+                github_token: ${{ secrets.GITHUB_TOKEN }}
+                branch: main
