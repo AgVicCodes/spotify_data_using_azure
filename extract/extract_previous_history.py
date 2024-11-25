@@ -50,7 +50,3 @@ if response.status_code == 200:
     print(history)
 else:
     print(f"Error: {response.status_code}", response.text)
-
-# curl -X GET "https://api.spotify.com/v1/me/player/recently-played?limit=50" -H "Authorization: Bearer BQAKLdHVyynFpSbgFYcxQcfszFbOJhJfxsCrSLrqYc_NmDwTuaMxtkyLbUF7Fd8RcXuOJhAgcx1dYUL8PuhVXLk8Oc_U_vhxYOTaOdQlryTNwr99_xsqWiqSbD2NfOD8kG8TYA-kfQs8hpd6-CA64rX5rGc7MNndbk_Sc4ZqI34fU1ublRGxDl3U8iPfSLYXy0LjiUGsf57IVIQ8pZrqdxo8Zg"
-
-# curl -X GET "https://api.spotify.com/v1/me/player/recently-played?limit=50" -H "Authorization: Bearer BQAEPiiJc4F4gK-DQDt3ANp_3-K6OJK6bfQHh1IQXKDuH24DGMNiXQjgnSKfEMWtkesN9YmKB6WZ9wy2D1pCt0MsN93CAPTRssSTdXNj9X8kokwOZ1AfD8oshAUlrvt1lzm2psDN2VQSVa-l0-vO4TuVGzjvdn1qp441mmeoifjojeQ2wvL6RD6nnGT1-e1ZxZAZMmqy9-BbToYs36mnOELSHA"

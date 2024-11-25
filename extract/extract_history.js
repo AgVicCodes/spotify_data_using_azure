@@ -1,7 +1,6 @@
 async function getRecentlyPlayed() {
     const url = 'https://api.spotify.com/v1/me/player/recently-played?limit=50';
-    const accessToken = 'BQAKLdHVyynFpSbgFYcxQcfszFbOJhJfxsCrSLrqYc_NmDwTuaMxtkyLbUF7Fd8RcXuOJhAgcx1dYUL8PuhVXLk8Oc_U_vhxYOTaOdQlryTNwr99_xsqWiqSbD2NfOD8kG8TYA-kfQs8hpd6-CA64rX5rGc7MNndbk_Sc4ZqI34fU1ublRGxDl3U8iPfSLYXy0LjiUGsf57IVIQ8pZrqdxo8Zg'; // Replace with your actual token
-
+ 
     try {
         const response = await fetch(url, {
             method: 'GET',
