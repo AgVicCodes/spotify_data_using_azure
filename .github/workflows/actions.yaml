@@ -2,7 +2,7 @@ name: Get daily listening history
 
 on: 
     schedule:
-        -   cron: "55 23 * * *"
+        -   cron: "55 11,23 * * *"
 
 jobs:
     Get-Daily-Listening-History:
