@@ -1,8 +1,8 @@
 name: Get daily listening history
 
-on:
-    schedule:
-        -   cron: "55 11,23 * * *"
+on: [push]
+    # schedule:
+    #     -   cron: "55 11,23 * * *"
 
 jobs:
     Get-Daily-Listening-History:
@@ -44,6 +44,7 @@ jobs:
         -   name: cleanup workspace
             run: |
                 rm keys.json
+                rm .cache
 
         -   name: commit files
             run: |
