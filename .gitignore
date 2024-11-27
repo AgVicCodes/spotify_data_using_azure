@@ -2,4 +2,4 @@ keys.json
 *env
 .ipynb_checkpoints
 note.py
-cache
+.cache
