@@ -23,9 +23,9 @@ except KeyError as ke:
     raise Exception(f"Key {ke} not found")
     
 
-print(f"Client ID: {client_id}, Type: {type(client_id)}")
-print(f"Client Secret: {client_secret}, Type: {type(client_secret)}")
-print(f"Redirect URI: {redirect_uri}, Type: {type(redirect_uri)}")
+print(f"Client ID: {client_id[:3]}***, Type: {type(client_id)}")
+print(f"Client Secret: {client_secret[:3]}***, Type: {type(client_secret)}")
+print(f"Redirect URI: {redirect_uri[:3]}***, Type: {type(redirect_uri)}")
 
 client = SpotifyOAuth(
     client_id,
