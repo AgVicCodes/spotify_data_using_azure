@@ -1,6 +1,6 @@
 name: Get Previous Listening History
 
-on: [push]
+on: schedule
 
 jobs:
   Get-Previous-Weekly-Listening-History:
