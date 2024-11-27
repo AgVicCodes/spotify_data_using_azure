@@ -34,9 +34,9 @@ jobs:
         #         echo "CLIENT_SECRET_KEY=${{ secrets.CLIENT_SECRET_KEY }}" >> $GITHUB_ENV
         #         echo "REDIRECT_URI=${{ secrets.REDIRECT_URI }}" >> $GITHUB_ENV
 
-        # -   name: generate listening history
-        #     run: |
-        #         python extract/extract_todays_history.py
+        -   name: generate listening history
+            run: |
+                python extract/extract_todays_history.py
 
         # -   name: load data into csv
         #     run: python load_data_to_csv.py
