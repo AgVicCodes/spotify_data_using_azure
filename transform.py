@@ -40,11 +40,14 @@ def merge_df(file_path):
             col('item.track.album.name').alias('album_name'),
             col('item.track.name').alias('track_name'),
             col('item.track.duration_ms').alias('duration'),
-            col('item.played_at').alias('played_at'),
+            # col('item.played_at').alias('played_at'),
+            to_timestamp('item.played_at').alias('played_at'),
             col('item.track.id').alias('id'),
             col('item.track.popularity').alias('popularity'),
             col('item.track.type').alias('track_type')
         )
+
+        temp_listening_flattened = temp_listening_flattened.withColumn('played_at', to_timestamp('played_at'))
 
         df.append(temp_listening_flattened)
 
