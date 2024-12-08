@@ -1,6 +1,6 @@
 name: Get daily listening history
 
-on: # [push]
+on: [push]
     schedule:
         -   cron: "55 11,23 * * *"
 
