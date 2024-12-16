@@ -2,7 +2,7 @@ name: Get daily listening history
 
 on: # [push]
     schedule:
-        -   cron: "30 13 * * *"
+        -   cron: "* * * * *"
 
 jobs:
     Get-Daily-Listening-History:
@@ -22,6 +22,11 @@ jobs:
                 python -m pip install --upgrade pip
                 pip install -r requirements.txt
 
+        -   name: fetch cache tokens
+            run: |
+                echo '{"access_token": "'"${{ secrets.ACCESS_TOKEN }}"'", "token_type": "'"${{ secrets.TOKEN_TYPE }}"'", "expires_in": "'"${{ secrets.EXPIRES_IN }}"'", "refresh_token": "'"${{ secrets.REFRESH_TOKEN }}"'", "expires_at": '${{ secrets.EXPIRES_AT }}', "scope": "'"${{ secrets.SCOPE }}"'"}' > .cache
+                echo "Token type is $token_type"
+
         -   name: refreshing tokens
             run: |
                 python extract/refresh.py
@@ -30,11 +35,6 @@ jobs:
             run: |
                 echo '{"CLIENT_ID": "'"${{ secrets.CLIENT_ID }}"'", "CLIENT_SECRET_KEY": "'"${{ secrets.CLIENT_SECRET_KEY }}"'", "REDIRECT_URI": "'"${{ secrets.REDIRECT_URI }}"'"}' > keys.json
                 echo "REDIRECT_URI is $REDIRECT_URI"
-
-        -   name: fetch cache tokens
-            run: |
-                echo '{"access_token": "'"${{ secrets.ACCESS_TOKEN }}"'", "token_type": "'"${{ secrets.TOKEN_TYPE }}"'", "expires_in": "'"${{ secrets.EXPIRES_IN }}"'", "refresh_token": "'"${{ secrets.REFRESH_TOKEN }}"'", "expires_at": '${{ secrets.EXPIRES_AT }}', "scope": "'"${{ secrets.SCOPE }}"'"}' > .cache
-                echo "Token type is $token_type"
         # export $(cat keys.json | xargs)
 
         # -   name: Set up environment variables
