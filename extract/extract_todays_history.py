@@ -31,7 +31,8 @@ client = SpotifyOAuth(
     client_id,
     client_secret,
     redirect_uri,
-    scope = "user-read-recently-played"
+    scope = "user-read-recently-played",
+    # cache_path = None
 )
 
 if not client_id or not client_secret or not redirect_uri:

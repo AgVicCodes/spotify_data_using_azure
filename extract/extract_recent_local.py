@@ -21,7 +21,7 @@ client = SpotifyOAuth(
 
 sp = spotipy.Spotify(auth_manager = client)
 
-json_files = glob.glob(f"recently_played*.json")
+json_files = glob.glob(f"data/recently_played*.json")
 
 count = len(json_files) + 1
 
