@@ -1,8 +1,8 @@
 name: Get daily listening history
 
-on: [push]
-    # schedule:
-    #     -   cron: "55 11,23 * * *"
+on: # [push]
+    schedule:
+        -   cron: "30 13 * * *"
 
 jobs:
     Get-Daily-Listening-History:
