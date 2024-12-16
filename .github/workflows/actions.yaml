@@ -33,7 +33,7 @@ jobs:
 
         -   name: fetch cache tokens
             run: |
-                echo '{"access_token": "'"${{ secrets.ACCESS_TOKEN }}"'", "token_type": "'"${{ secrets.TOKEN_TYPE }}"'", "expires_in": "'"${{ secrets.EXPIRES_IN }}"'", "refresh_token": "'"${{ secrets.REFRESH_TOKEN }}"'", "scope": "'"${{ secrets.SCOPE }}"'"}' > .cache
+                echo '{"access_token": "'"${{ secrets.ACCESS_TOKEN }}"'", "token_type": "'"${{ secrets.TOKEN_TYPE }}"'", "expires_in": "'"${{ secrets.EXPIRES_IN }}"'", "refresh_token": "'"${{ secrets.REFRESH_TOKEN }}"'", "expires_at": "'"${{ secrets.EXPIRES_AT }}"'", "scope": "'"${{ secrets.SCOPE }}"'"}' > .cache
                 echo "Token type is $token_type"
         # export $(cat keys.json | xargs)
 
