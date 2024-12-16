@@ -26,6 +26,7 @@ jobs:
             run: |
                 echo '{"access_token": "'"${{ secrets.ACCESS_TOKEN }}"'", "token_type": "'"${{ secrets.TOKEN_TYPE }}"'", "expires_in": "'"${{ secrets.EXPIRES_IN }}"'", "refresh_token": "'"${{ secrets.REFRESH_TOKEN }}"'", "expires_at": '${{ secrets.EXPIRES_AT }}', "scope": "'"${{ secrets.SCOPE }}"'"}' > .cache
                 echo "Token type is $token_type"
+                echo "Token expires at $expires_at"
 
         -   name: refreshing tokens
             run: |
