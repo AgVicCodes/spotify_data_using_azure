@@ -55,6 +55,9 @@ def merge_df(file_path):
 
     return temp_df
 
-path = glob.glob(f'data/recently_played*.json')
+path = glob.glob(f'../data/recently_played*.json')
 
-print(merge_df(path).count())
+merged_df = merge_df(path)
+
+# print(merged_df.show())
+merged_df.show()
