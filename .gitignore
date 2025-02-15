@@ -1,5 +1,6 @@
 keys.json
 *env
+.windows
 .ipynb_checkpoints
 note.py
 .cache
