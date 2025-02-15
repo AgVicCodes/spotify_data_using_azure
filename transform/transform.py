@@ -51,13 +51,13 @@ def merge_df(file_path):
 
         df.append(temp_listening_flattened)
 
-    temp_df = reduce(DataFrame.unionAll, df) 
+    if df:
+        temp_df = reduce(DataFrame.unionAll, df)
 
     return temp_df
 
-path = glob.glob(f'../data/recently_played*.json')
+path = glob.glob(f'data/recently_played*.json')
 
 merged_df = merge_df(path)
 
-# print(merged_df.show())
 merged_df.show()

@@ -2,7 +2,7 @@ import json
 import pandas as pd
 
 
-with open("data/recently_played7.json", "r") as file:
+with open("data/recently_played157.json", "r") as file:
     data = json.load(file)
 
 
@@ -39,7 +39,7 @@ song_df = pd.DataFrame(df_dict)
 
 pd.set_option("display.max_columns", None)
 
-print(song_df.head(10))
+print(song_df.tail(20))
 
 
 # print(item["track"]["album"]["name"])
