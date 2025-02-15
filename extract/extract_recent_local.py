@@ -4,42 +4,51 @@ import glob
 import spotipy
 from spotipy.oauth2 import SpotifyOAuth
 
-key_path = "keys.json"
+class FileManager:
+    def __init__(self, directory = "data", filename_prefix = "recently_played"):
+        self.directory  =  directory
+        self.filename_prefix = filename_prefix
 
-try:
-    with open(key_path) as file:
-        keys = json.load(file)
-except FileNotFoundError as fnfe:
-    print(f"File {key_path} not found")
+    def get_next_filename(self):
+        json_files = glob.glob(f"{self.directory}/{self.filename_prefix}*.json")
+        count = len(json_files) + 1
+        return f"{self.directory}/{self.filename_prefix}{count}.json"
 
-client = SpotifyOAuth(
-    client_id = keys["client_id"], 
-    client_secret = keys["client_secret_key"], 
-    redirect_uri = keys["redirect_uri"], 
-    scope = "user-read-recently-played"
-)
-
-sp = spotipy.Spotify(auth_manager = client)
-
-json_files = glob.glob(f"data/recently_played*.json")
-
-count = len(json_files) + 1
-
-current_time = int(time.time())
-
-def get_recently_played():    
-
-    recently_played = sp.current_user_recently_played(limit = 50, after = current_time)
-
-    with open(f"data/recently_played{count}.json", "w") as file:
-        json.dump(recently_played, file, indent = 4)
+    def save_data(self, data):
+        filename = self.get_next_filename()
+        with open(filename, "w") as file:
+            json.dump(data, file, indent = 4)
+        print(f"Data saved to {filename}")
 
 
+class SpotifyClient:
+    def __init__(self, keys_path = "keys.json", scope = "user-read-recently-played"):
+        self.keys = self.load_keys(keys_path)
+        self.auth_manager = SpotifyOAuth(
+            client_id=self.keys["client_id"],
+            client_secret=self.keys["client_secret_key"],
+            redirect_uri=self.keys["redirect_uri"],
+            scope=scope
+        )
+        self.sp = spotipy.Spotify(auth_manager=self.auth_manager)
+        self.file_manager = FileManager()
 
-get_recently_played()
+    def load_keys(self, path):
+        try:
+            with open(path) as file:
+                return json.load(file)
+        except FileNotFoundError:
+            print(f"File {path} not found")
+            raise
 
-# Extract playlist items
-# playlist_items
+    def get_recently_played(self):
+        # Get the current time (could also be abstracted if needed)
+        current_time = int(time.time())
+        recently_played = self.sp.current_user_recently_played(limit = 50, after = current_time)
+        self.file_manager.save_data(recently_played)
+        return recently_played
 
-
-# Get the current time in Unix time
+# Usage
+if __name__ == "__main__":
+    client = SpotifyClient()
+    client.get_recently_played()
