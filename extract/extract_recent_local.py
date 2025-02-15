@@ -6,7 +6,7 @@ from spotipy.oauth2 import SpotifyOAuth
 
 class FileManager:
     def __init__(self, directory = "data", filename_prefix = "recently_played"):
-        self.directory  =  directory
+        self.directory = directory
         self.filename_prefix = filename_prefix
 
     def get_next_filename(self):
@@ -25,10 +25,10 @@ class SpotifyClient:
     def __init__(self, keys_path = "keys.json", scope = "user-read-recently-played"):
         self.keys = self.load_keys(keys_path)
         self.auth_manager = SpotifyOAuth(
-            client_id=self.keys["client_id"],
-            client_secret=self.keys["client_secret_key"],
-            redirect_uri=self.keys["redirect_uri"],
-            scope=scope
+            client_id = self.keys["client_id"],
+            client_secret = self.keys["client_secret_key"],
+            redirect_uri = self.keys["redirect_uri"],
+            scope = scope
         )
         self.sp = spotipy.Spotify(auth_manager=self.auth_manager)
         self.file_manager = FileManager()
