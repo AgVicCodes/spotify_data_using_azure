@@ -5,4 +5,5 @@ keys.json
 note.py
 .cache
 lambda*
+lambda_package
 __pycache__
