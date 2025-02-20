@@ -1,6 +1,18 @@
 import os
 import json
 import glob
+import logging
+
+logging.basicConfig(
+    filename = "app.log",
+    level = logging.DEBUG,
+    format = "%(asctime)s - %(levelname)s - %(message)s",
+    datefmt = "%Y-%m-%d %H:%M:%S"
+)
+
+console_handler = logging.StreamHandler()
+console_handler.setLevel(logging.INFO)
+logging.getLogger().addHandler(console_handler)
 
 class FileManager:
     """
@@ -22,6 +34,10 @@ class FileManager:
         self.file_prefix = filename_prefix
         self.file_type = file_extension
 
+        os.makedirs(self.dir, exist_ok = True) 
+        
+        logging.info(f"FileManager Initialised with directory {self.dir}")
+
     def get_file_name(self):
         """
         Generates a unique filename based on the existing files in the directory.
@@ -30,7 +46,11 @@ class FileManager:
         """
         json_files = glob.glob(f"{os.path.join(self.dir, self.file_prefix)}*.{self.file_type}")
         count = len(json_files) + 1
-        return f"{os.path.join(self.dir, self.file_prefix)}{count}.{self.file_type}"
+        filename = f"{os.path.join(self.dir, self.file_prefix)}{count}.{self.file_type}"
+        
+        logging.info(f"Generated filename {filename}")
+
+        return filename
         
     def save_file(self, recently_played):
         """
@@ -38,8 +58,20 @@ class FileManager:
 
         :param recently_played: The data to be saved, typically a dictionary or list.
         """
-        with open(self.get_file_name(), "w") as file:
-            json.dump(recently_played, file, indent = 4)
+        try:
+            filepath = self.get_file_name()
+            with open(filepath, "w") as file:
+                json.dump(recently_played, file, indent = 4)
 
-newFile = FileManager()
-print(newFile.get_file_name())
+            logging.info(f"File {filepath} saved successfully!")
+        except Exception as e:
+            logging.error(f"Error saving file: {e}")
+
+
+# data = {
+#     "greeting": "Hello World"
+# }
+
+# newFile = FileManager()
+# print(newFile.get_file_name())
+# newFile.save_file(data)
