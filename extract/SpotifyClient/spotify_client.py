@@ -4,7 +4,7 @@ import time
 import spotipy
 import requests
 from spotipy import SpotifyOAuth
-from FileManager.file_manager import FileManager
+from extract.FileManager.file_manager import FileManager
 
 class SpotifyClient:
     """
@@ -38,11 +38,14 @@ class SpotifyClient:
         :raise FileNotFoundError: If `keys.json` is not found in the project root directory.
         :return keys: A dictionary containing client details
         """
-        base_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-        path = os.path.join(base_dir, "keys.json")
-        with open(path, "r") as file:
-            keys = json.load(file)
-        return keys
+        try:
+            base_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+            path = os.path.join(base_dir, "keys.json")
+            with open(path, "r") as file:
+                keys = json.load(file)
+            return keys
+        except FileNotFoundError:
+            print(f"File {path} not found!")
     
     def get_recently_played(self):
         """
@@ -57,11 +60,11 @@ class SpotifyClient:
         """
         try:
             current_time = int(time.time())
-            recent_playback = self.sp.current_user_recently_played(limit = 50, before = current_time)
+            recent_playback = self.sp.current_user_recently_played(limit = 50, after = current_time)
             self.file_manager.save_file(recent_playback)
         except spotipy.exceptions.SpotifyException as se:
             raise Exception(f"Error {se}")
-
+        
     def refresh_access_token(self):
         """
         Refreshes the Spotify access token using the refresh token.
@@ -84,6 +87,3 @@ class SpotifyClient:
 
         response = requests.post(url, data = payload, headers = headers)
         return response.json().get("access_token")
-
-client = SpotifyClient()
-client.get_recently_played()

@@ -1,2 +1,2 @@
-from FileManager.file_manager import FileManager
-from SpotifyClient.spotify_client import SpotifyClient 
+from extract.FileManager.file_manager import FileManager
+from extract.SpotifyClient.spotify_client import SpotifyClient

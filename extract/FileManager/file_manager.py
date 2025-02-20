@@ -40,3 +40,6 @@ class FileManager:
         """
         with open(self.get_file_name(), "w") as file:
             json.dump(recently_played, file, indent = 4)
+
+newFile = FileManager()
+print(newFile.get_file_name())
