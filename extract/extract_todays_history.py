@@ -22,7 +22,7 @@ try:
 except KeyError as ke:
     raise Exception(f"Key {ke} not found")
     
-
+# Use Python Property decorators to hide these details
 print(f"Client ID: {client_id[:3]}***, Type: {type(client_id)}")
 print(f"Client Secret: {client_secret[:3]}***, Type: {type(client_secret)}")
 print(f"Redirect URI: {redirect_uri[:3]}***, Type: {type(redirect_uri)}")

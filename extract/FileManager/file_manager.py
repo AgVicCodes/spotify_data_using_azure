@@ -2,6 +2,7 @@ import os
 import json
 import glob
 import logging
+from typing import Dict, List
 
 logging.basicConfig(
     filename = "app.log",
@@ -21,8 +22,8 @@ class FileManager:
     """
 
     def __init__(self, 
-                directory = f"{os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), "data")}", 
-                filename_prefix = "recently_played", file_extension = "json"):
+                directory: str = f"{os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), "data")}", 
+                filename_prefix: str = "recently_played", file_extension: str = "json"):
         """
         Initializes the FileManager with directory, filename prefix, and file extension.
 
@@ -38,21 +39,21 @@ class FileManager:
         
         logging.info(f"FileManager Initialised with directory {self.dir}")
 
-    def get_file_name(self):
+    def get_file_name(self) -> str:
         """
         Generates a unique filename based on the existing files in the directory.
 
         :return: A new filename with an incremented count to avoid overwriting existing files.
         """
-        json_files = glob.glob(f"{os.path.join(self.dir, self.file_prefix)}*.{self.file_type}")
-        count = len(json_files) + 1
-        filename = f"{os.path.join(self.dir, self.file_prefix)}{count}.{self.file_type}"
+        json_files: str = glob.glob(f"{os.path.join(self.dir, self.file_prefix)}*.{self.file_type}")
+        count: int = len(json_files) + 1
+        filename: str = f"{os.path.join(self.dir, self.file_prefix)}{count}.{self.file_type}"
         
         logging.info(f"Generated filename {filename}")
 
         return filename
         
-    def save_file(self, recently_played):
+    def save_file(self, recently_played: Dict):
         """
         Saves the given data (recently played tracks) into a JSON file.
 
