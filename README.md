@@ -1,3 +1,5 @@
+Create 3 different branches for each major cloud service provider: AWS, GCP and Azure
+
 Score: 4/10
 
 Recommendations for Improvement:
